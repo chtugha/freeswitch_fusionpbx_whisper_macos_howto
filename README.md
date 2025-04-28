@@ -9,7 +9,10 @@ and install everything exactly as shown there.
 <BR>
 <BR>
 <BR>
-1.) First we need to get the necessary libraries and programs:
+1.) First we need to get the necessary libraries and programs. Enter into terminal:
+<BR>
+<BR>
+![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
 _`brew install lua nginx node opus sox sqlite freeswitch`_
