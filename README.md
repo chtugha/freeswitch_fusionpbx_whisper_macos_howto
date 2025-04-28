@@ -12,13 +12,19 @@ and install everything exactly as shown there.
 1.) First we need to get the necessary libraries and programs:
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql`_
+_`brew install lua nginx node opus sox sqlite freeswitch`_
 <BR>
 <BR>
 <BR>
-2.) Prepare a database for FusionPBX and get the repository:
+2.) Get FusionPBX and prepare it:
 <BR>
-<BR>
-_`brew services start postgresql`_
 <BR>
 _`git clone https://github.com/fusionpbx/fusionpbx.git /opt/homebrew/var/www/fusionpbx`_
+<BR>
+_`sudo chown -R www:www /opt/homebrew/var/www/fusionpbx`_
+<BR>
+<BR>
+<BR>
+3.) Prepare a database for FusionPBX:
+<BR>
+<BR>
