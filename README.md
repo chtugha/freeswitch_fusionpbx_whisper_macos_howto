@@ -15,7 +15,13 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc php`_
+_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc`_
+<BR>
+_`brew tap shivammathur/php`_
+<BR>
+_`brew install shivammathur/php/php@8.0`_
+<BR>
+_`brew link --overwrite --force php@8.0`_
 <BR>
 <BR>
 <BR>
