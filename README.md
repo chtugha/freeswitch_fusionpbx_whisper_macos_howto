@@ -134,7 +134,7 @@ _`sudo sed -i '' "85s/.*/\$language_code = \$_SESSION['domain']['language']['cod
 4.) Adjust the installation file:
 <BR>
 <BR>
-_`nano /opt/homebrew/var/www/fusionpbx/install/install.php`_
+_`nano /opt/homebrew/var/www/fusionpbx/core/install/install.php`_
 <BR>
 <BR>
 Go to line 74 and change the code from:
