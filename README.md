@@ -59,7 +59,7 @@ _`nano /opt/homebrew/etc/odbc.ini`_
 <BR>
 <BR>
 Paste following lines into odbc.ini:
-<BR>
+
 ```ini
 [freeswitch]
 Description         = PostgreSQL
@@ -78,9 +78,7 @@ ShowOidColumn       = No
 FakeOidIndex        = No
 #ConnSettings        = set search_path to coredb,public
 ```
-
-<BR>
-Save changes and quit nano by pressing: `CTRL+O` (confirm with y) and `CTRL+X`.
+Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
 <BR>
 <BR>
 Now edit odbcinst.ini:
@@ -95,8 +93,7 @@ Paste following lines into odbcinst.ini:
 Description     = ODBC for PostgreSQL
 Driver          = /opt/homebrew/lib/psqlodbcw.so  # Apple Silicon path
 ```
-<BR>
-Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
+Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
 <BR>
 <BR>
 Test ODBC:
