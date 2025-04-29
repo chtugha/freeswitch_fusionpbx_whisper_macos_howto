@@ -54,6 +54,7 @@ _`\q`_
 <BR>
 3.)Configure ODBC
 <BR>
+<BR>
 _`nano /opt/homebrew/etc/odbc.ini`_
 <BR>
 <BR>
@@ -77,8 +78,9 @@ ShowOidColumn       = No
 FakeOidIndex        = No
 #ConnSettings        = set search_path to coredb,public
 ```
+
 <BR>
-Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
+Save changes and quit nano by pressing: `CTRL+O` (confirm with y) and `CTRL+X`.
 <BR>
 <BR>
 Now edit odbcinst.ini:
