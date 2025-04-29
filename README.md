@@ -77,7 +77,6 @@ FakeOidIndex        = No
 #ConnSettings        = set search_path to coredb,public
 ```
 <BR>
-<BR>
 Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
 <BR>
 <BR>
