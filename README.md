@@ -124,7 +124,7 @@ _`quit`_
 <BR>
 _`git clone https://github.com/fusionpbx/fusionpbx.git /opt/homebrew/var/www/fusionpbx`_
 <BR>
-_`sudo chown -R _www:daemon /opt/homebrew/var/www/fusionpbx`_
+_`sudo chown -R $(whoami):staff /opt/homebrew/var/www/fusionpbx`_
 <BR>
 _`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
 <BR>
