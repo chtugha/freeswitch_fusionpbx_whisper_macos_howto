@@ -22,7 +22,7 @@ _`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc uni
 2.) Prepare a database for FusionPBX:
 <BR>
 <BR>
-_`brew services start postrgesql`_
+_`brew services start postgresql`_
 <BR>
 _`createdb`_
 <BR>
