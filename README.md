@@ -234,7 +234,26 @@ case "DAR":
                                 $cache_location = '/opt/homebrew/var/cache/fusionpbx';
                                 break;
 ```
-6.) get nginx going
+Edit functions
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/funtions.php`_
+<BR>
+<BR>
+Add the following at line 211:
+<BR>
+<BR>
+```ini
+if (PHP_OS === 'Darwin') {
+				$uuid = trim(shell_exec("uuidgen"));
+				if (is_uuid($uuid)) {
+					return $uuid;
+				} else {
+					echo "Please install uuidgen.\n";
+					exit;
+				}
+			}
+```
+7.) get nginx going
 <BR>
 <BR>
 _`mv /opt/homebrew/etc/nginx/nginx.conf /opt/homebrew/etc/nginx/nginx.conf.old`_
@@ -300,4 +319,4 @@ _`brew services start nginx`_
 <BR>
 <BR>
 <BR>
-7.) Start freeswitch:
+8.) Start freeswitch:
