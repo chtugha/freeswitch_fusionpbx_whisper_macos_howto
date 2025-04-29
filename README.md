@@ -131,7 +131,7 @@ _`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
 _`sudo sed -i '' "85s/.*/\$language_code = \$_SESSION['domain']['language']['code'] ?? 'en-us';/" /opt/homebrew/var/www/fusionpbx/resources/classes/text.php`_
 <BR>
 <BR>
-Adjust the installation file:
+4.) Adjust the installation file:
 <BR>
 <BR>
 _`nano /opt/homebrew/var/www/fusionpbx/install/install.php`_
@@ -203,4 +203,70 @@ To the following:
 			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
 ```
 
-4.) Edit nginx.conf
+5.) get nginx going
+<BR>
+<BR>
+_`mv /opt/homebrew/etc/nginx/nginx.conf /opt/homebrew/etc/nginx/nginx.conf.old`_
+<BR>
+_`nano /opt/homebrew/etc/nginx/nginx.conf`_
+<BR>
+<BR>
+And paste the following into nginx.conf:
+<BR>
+<BR>
+```ini
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       8080;
+        server_name  localhost;
+
+        root   /opt/homebrew/var/www/fusionpbx;
+        index  index.php index.html index.htm;
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+            include fastcgi_params;
+            fastcgi_pass 127.0.0.1:9000;  # PHP-FPM auf Port 9000
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        }
+
+        location ~ /\.ht {
+            deny all;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+
+    include servers/*;
+}
+```
+Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
+<BR>
+<BR>
+Start nginx:
+<BR>
+<BR>
+_`brew services start nginx`_
+<BR>
+<BR>
+<BR>
+6.) Start freeswitch:
