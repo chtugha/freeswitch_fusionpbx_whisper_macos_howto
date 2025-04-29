@@ -253,6 +253,25 @@ if (PHP_OS === 'Darwin') {
 				}
 			}
 ```
+Edit messages
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/classes/messages.php`_
+<BR>
+<BR>
+Replace the following at line 31:
+<BR>
+<BR>
+```ini
+//set mood
+				$mood = $mood ?: 'positive';
+        // set delay
+				// $delay = $delay ?: (1000 * (float) $_SESSION['theme']['message_delay']['text']);
+        if (isset($_SESSION['theme']['message_delay']['text']) && is_numeric($_SESSION['theme']['message_delay']['text'])) {
+          $delay = $delay ?: (1000 * (float) $_SESSION['theme']['message_delay']['text']);
+        } else {
+          $delay = $delay ?: 1000; // Default to 1000ms if message_delay is not set or invalid
+        }
+```
 7.) get nginx going
 <BR>
 <BR>
