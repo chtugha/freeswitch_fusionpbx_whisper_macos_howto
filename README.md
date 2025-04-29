@@ -202,8 +202,33 @@ To the following:
 			#app defaults
 			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php core/upgrade/upgrade_domains.php');
 ```
-
-5.) get nginx going
+5.) Adjust the installation class:
+<BR>
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/core/install/resources/classes/install.php`_
+<BR>
+<BR>
+Add the following case to the switch:
+<BR>
+<BR>
+```ini
+case "DAR":
+                                $config_path = '/opt/homebrew/var/www/fusionpbx';
+                                $config_file = $config_path.'/config.conf';
+                                $document_root = '/opt/homebrew/var/www/fusionpbx';
+                        
+                                $conf_dir = '/opt/homebrew/etc/freeswitch';
+                                $sounds_dir = '/opt/homebrew/share/freeswitch/sounds';
+                                $database_dir = '/opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/db';
+                                $recordings_dir = '/opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/recordings';
+                                $storage_dir = '/opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/storage';
+                                $voicemail_dir = '/opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/storage/voicemail';
+                                $scripts_dir = '/opt/homebrew/share/freeswitch/scripts';
+                                $php_dir = PHP_BINDIR;
+                                $cache_location = '/opt/homebrew/var/cache/fusionpbx';
+                                break;
+```
+6.) get nginx going
 <BR>
 <BR>
 _`mv /opt/homebrew/etc/nginx/nginx.conf /opt/homebrew/etc/nginx/nginx.conf.old`_
@@ -269,4 +294,4 @@ _`brew services start nginx`_
 <BR>
 <BR>
 <BR>
-6.) Start freeswitch:
+7.) Start freeswitch:
