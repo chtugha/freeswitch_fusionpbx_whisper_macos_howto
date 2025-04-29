@@ -126,7 +126,11 @@ _`git clone https://github.com/fusionpbx/fusionpbx.git /opt/homebrew/var/www/fus
 <BR>
 _`sudo chown -R $(whoami):staff /opt/homebrew/var/www/fusionpbx`_
 <BR>
+_`sudo chown -R $(whoami):staff /opt/homebrew/etc/fusionpbx`_
+<BR>
 _`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
+<BR>
+_`sudo chmod -R 755 /opt/homebrew/etc/fusionpbx`_
 <BR>
 _`sudo sed -i '' "85s/.*/\$language_code = \$_SESSION['domain']['language']['code'] ?? 'en-us';/" /opt/homebrew/var/www/fusionpbx/resources/classes/text.php`_
 <BR>
