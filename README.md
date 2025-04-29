@@ -175,7 +175,7 @@ To the following:
 	if (!$config_exists) {
 		if (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.php")) {
 			//Apple Silicon
-			$config_path = "/opt/homebrew/var/www/resources/fusionpbx";
+			$config_path = "/opt/homebrew/var/www/fusionpbx/resources";
 		}
 ```
 Now go to line 180 and change the code from:
