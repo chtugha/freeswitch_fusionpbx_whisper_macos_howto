@@ -137,7 +137,70 @@ Adjust the installation file:
 _`nano /opt/homebrew/var/www/fusionpbx/install/install.php`_
 <BR>
 <BR>
-Go to
-
+Go to line 74 and change the code from:
+<BR>
+```ini
+//if the config file exists then disable the install page
+	$config_exists = false;
+	if (file_exists("/usr/local/etc/fusionpbx/config.conf")) {
+		//bsd
+		$config_exists = true;
+```
+to the following:
+```ini
+//if the config file exists then disable the install page
+	$config_exists = false;
+	if (file_exists("/opt/homebrew/var/www/fusionpbx/config.conf")) {
+		//Apple Silicon
+		$config_exists = true;
+```
+Now go to line 97 and change the code from:
+```ini
+//if the config.php exists create the config.conf file
+	if (!$config_exists) {
+		if (file_exists("/usr/local/etc/fusionpbx/config.php")) {
+			//bsd
+			$config_path = "/usr/local/etc/fusionpbx";
+		}
+```
+To the following:
+```ini
+//if the config.php exists create the config.conf file
+	if (!$config_exists) {
+		if (file_exists("/opt/homebrew/var/www/fusionpbx/config.php")) {
+			//Apple Silicon
+			$config_path = "/opt/homebrew/var/www/fusionpbx";
+		}
+```
+Now go to line 180 and change the code from:
+```ini
+//add the database schema
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /var/www/fusionpbx/core/upgrade/upgrade_schema.php');
+```
+To the following:
+```ini
+//add the database schema
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_schema.php');
+```
+Now go to line 234 and change the code from:
+```ini
+//app defaults
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+```
+To the following:
+```ini
+//app defaults
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+```
+Now go to line 332 and change the code from:
+```ini
+			#app defaults
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+```
+To the following:
+```ini
+			#app defaults
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+```
 
 4.) Edit nginx.conf
