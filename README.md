@@ -180,7 +180,7 @@ Now go to line 180 and change the code from:
 To the following:
 ```ini
 //add the database schema
-			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_schema.php');
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php core/upgrade/upgrade_schema.php');
 ```
 Now go to line 234 and change the code from:
 ```ini
@@ -190,7 +190,7 @@ Now go to line 234 and change the code from:
 To the following:
 ```ini
 //app defaults
-			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php core/upgrade/upgrade_domains.php');
 ```
 Now go to line 332 and change the code from:
 ```ini
@@ -200,7 +200,7 @@ Now go to line 332 and change the code from:
 To the following:
 ```ini
 			#app defaults
-			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php core/upgrade/upgrade_domains.php');
 ```
 
 5.) get nginx going
