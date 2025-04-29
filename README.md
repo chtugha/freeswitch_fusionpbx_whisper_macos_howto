@@ -35,7 +35,9 @@ _`psql`_
 Create a Database:
 <BR>
 _`create role freeswitch with password 'freeswitch!' login;`_
+<BR>
 _`create role fsadmin with password 'fsadmin' login superuser createdb;`_
+<BR>
 _`create database freeswitch owner freeswitch;`_
 <BR>
 <BR>
