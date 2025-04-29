@@ -51,7 +51,8 @@ Exit postgres shell
 _`\q`_
 <BR>
 <BR>
-And Configure ODBC
+<BR>
+3.)Configure ODBC
 <BR>
 _`nano /opt/homebrew/etc/odbc.ini`_
 <BR>
