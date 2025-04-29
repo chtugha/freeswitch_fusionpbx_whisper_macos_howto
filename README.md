@@ -156,7 +156,7 @@ to the following:
 ```ini
 //if the config file exists then disable the install page
 	$config_exists = false;
-	if (file_exists("/opt/homebrew/etc/fusionpbx/config.conf")) {
+	if (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.conf")) {
 		//Apple Silicon
 		$config_exists = true;
 ```
@@ -173,9 +173,9 @@ To the following:
 ```ini
 //if the config.php exists create the config.conf file
 	if (!$config_exists) {
-		if (file_exists("/opt/homebrew/etc/fusionpbx/config.php")) {
+		if (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.php")) {
 			//Apple Silicon
-			$config_path = "/opt/homebrew/etc/fusionpbx";
+			$config_path = "/opt/homebrew/var/www/fusionpbx/resources";
 		}
 ```
 Now go to line 180 and change the code from:
@@ -219,7 +219,7 @@ Add the following case to the switch:
 <BR>
 ```ini
 case "DAR":
-                                $config_path = '/opt/homebrew/etc/fusionpbx';
+                                $config_path = '/opt/homebrew/var/www/fusionpbx/resources';
                                 $config_file = $config_path.'/config.conf';
                                 $document_root = '/opt/homebrew/var/www/fusionpbx';
                         
