@@ -15,7 +15,7 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc`_
+_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc php`_
 <BR>
 <BR>
 <BR>
@@ -112,5 +112,10 @@ _`quit`_
 <BR>
 _`git clone https://github.com/fusionpbx/fusionpbx.git /opt/homebrew/var/www/fusionpbx`_
 <BR>
+_`sudo chown -R _www:daemon /opt/homebrew/var/www/fusionpbx`_
+<BR>
+_`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
 <BR>
 <BR>
+<BR>
+4.) Edit nginx.conf
