@@ -23,6 +23,8 @@ _`brew install shivammathur/php/php@8.0`_
 <BR>
 _`brew link --overwrite --force php@8.0`_
 <BR>
+_`brew services start php@8.0`_
+<BR>
 <BR>
 <BR>
 2.) Prepare a database for FusionPBX:
@@ -44,7 +46,11 @@ _`create role freeswitch with password 'freeswitch!' login;`_
 <BR>
 _`create role fsadmin with password 'fsadmin' login superuser createdb;`_
 <BR>
+_`create role fusionpbx with password 'fusionpbx' login superuser createdb;`_
+<BR>
 _`create database freeswitch owner freeswitch;`_
+<BR>
+_`create database fusionpbx owner fusionpbx;`_
 <BR>
 <BR>
 Check if the database was created:
@@ -122,6 +128,16 @@ _`sudo chown -R _www:daemon /opt/homebrew/var/www/fusionpbx`_
 <BR>
 _`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
 <BR>
+_`sudo sed -i '' "85s/.*/\$language_code = \$_SESSION['domain']['language']['code'] ?? 'en-us';/" /opt/homebrew/var/www/fusionpbx/resources/classes/text.php`_
 <BR>
 <BR>
+Adjust the installation file:
+<BR>
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/install/install.php`_
+<BR>
+<BR>
+Go to
+
+
 4.) Edit nginx.conf
