@@ -219,7 +219,7 @@ Add the following case to the switch:
 <BR>
 ```ini
 case "DAR":
-                                $config_path = '/opt/homebrew/var/www/fusionpbx/resources';
+                                $config_path = '/opt/homebrew/var/www/fusionpbx';
                                 $config_file = $config_path.'/config.conf';
                                 $document_root = '/opt/homebrew/var/www/fusionpbx';
                         
