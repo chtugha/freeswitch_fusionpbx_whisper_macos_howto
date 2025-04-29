@@ -156,7 +156,7 @@ to the following:
 ```ini
 //if the config file exists then disable the install page
 	$config_exists = false;
-	if (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.conf")) {
+	if (file_exists("/opt/homebrew/var/www/fusionpbx/config.conf")) {
 		//Apple Silicon
 		$config_exists = true;
 ```
@@ -173,9 +173,9 @@ To the following:
 ```ini
 //if the config.php exists create the config.conf file
 	if (!$config_exists) {
-		if (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.php")) {
+		if (file_exists("/opt/homebrew/var/www/fusionpbx/config.php")) {
 			//Apple Silicon
-			$config_path = "/opt/homebrew/var/www/fusionpbx/resources";
+			$config_path = "/opt/homebrew/var/www/fusionpbx";
 		}
 ```
 Now go to line 180 and change the code from:
