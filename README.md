@@ -15,7 +15,7 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql`_
+_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc`_
 <BR>
 <BR>
 <BR>
@@ -49,6 +49,36 @@ _`\l`_
 Exit postgres shell
 <BR>
 _`\q`_
+<BR>
+<BR>
+And Configure ODBC
+<BR>
+_`nano /opt/homebrew/etc/odbc.ini`_
+<BR>
+<BR>
+Paste following lines into odbc.ini:
+<BR>
+```ini
+[freeswitch]
+Description         = PostgreSQL
+Driver              = PostgreSQL Unicode
+Trace               = No
+TraceFile           = /tmp/psqlodbc.log
+Database            = freeswitch
+Servername          = 127.0.0.1
+UserName            = freeswitch
+Password            = freeswitch!
+Port                = 5432
+ReadOnly            = No
+RowVersioning       = No
+ShowSystemTables    = No
+ShowOidColumn       = No
+FakeOidIndex        = No
+#ConnSettings        = set search_path to coredb,public
+```
+<BR>
+<BR>
+Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
 <BR>
 <BR>
 <BR>
