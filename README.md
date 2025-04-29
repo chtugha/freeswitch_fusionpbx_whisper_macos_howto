@@ -15,7 +15,7 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc`_
+_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc`_
 <BR>
 <BR>
 <BR>
@@ -78,6 +78,32 @@ FakeOidIndex        = No
 ```
 <BR>
 Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
+<BR>
+<BR>
+Now edit odbcinst.ini:
+<BR>
+_`nano /opt/homebrew/etc/odbcinst.ini`_
+<BR>
+<BR>
+Paste following lines into odbcinst.ini:
+<BR>
+```ini
+[PostgreSQL Unicode]
+Description     = ODBC for PostgreSQL
+Driver          = /opt/homebrew/lib/psqlodbcw.so  # Apple Silicon path
+```
+<BR>
+Save changes and quit nano by pressing: CTRL+O (confirm with y) and CTRL+X.
+<BR>
+<BR>
+Test ODBC:
+<BR>
+_`isql freeswitch -v`_
+<BR>
+<BR>
+And exit the SQL-Shell again:
+<BR>
+_`quit`_
 <BR>
 <BR>
 <BR>
