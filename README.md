@@ -277,6 +277,16 @@ Edit config
 _`nano /opt/homebrew/var/www/fusionpbx/resources/classes/config.php`_
 <BR>
 <BR>
+Go to line 196 and change the code from:
+```ini
+			// Load the document root
+			$doc_root = $this->get('document.root', '/var/www/fusionpbx');
+```
+To the following:
+```ini
+			// Load the document root
+			$doc_root = $this->get('document.root', '/opt/homebrew/var/www/fusionpbx');
+```
 Add the following at line 232:
 <BR>
 <BR>
