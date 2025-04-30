@@ -397,4 +397,31 @@ _`brew services start nginx`_
 <BR>
 <BR>
 <BR>
-8.) Start freeswitch:
+8.) Prepare fusionpbx
+<BR>
+<BR>
+create config.php
+<BR>
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/config.php`_
+<BR>
+<BR>
+And paste following code into it
+<BR>
+<BR>
+```ini
+<?php
+$db_type = 'pgsql';
+$db_host = 'localhost';
+$db_port = '5432';
+$db_name = 'fusionpbx';
+$db_username = 'fusionpbx';
+$db_password = 'fusionpbx';
+?>
+```
+Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
+<BR>
+_`php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_schema.php`_
+<BR>
+<BR>
+9.) Start freeswitch:
