@@ -15,7 +15,7 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install lua nginx node opus sox sqlite freeswitch postgresql psqlodbc unixodbc`_
+_`brew install nginx sqlite freeswitch postgresql psqlodbc unixodbc`_
 <BR>
 _`brew tap shivammathur/php`_
 <BR>
@@ -271,6 +271,19 @@ Replace the following at line 31:
         } else {
           $delay = $delay ?: 1000; // Default to 1000ms if message_delay is not set or invalid
         }
+```
+Edit config
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/classes/config.php`_
+<BR>
+<BR>
+Add the following at line 232:
+<BR>
+<BR>
+```ini
+elseif (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.conf")) {
+			$file = "/opt/homebrew/var/www/fusionpbx/resources/config.conf";
+		}
 ```
 7.) get nginx going
 <BR>
