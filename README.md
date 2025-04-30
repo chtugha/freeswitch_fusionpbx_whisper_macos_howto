@@ -482,9 +482,107 @@ _`php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_schema.php`_
 And add the admin user (password admin) into the database
 <BR>
 <BR>
-_`psql`_
-_`\c fusionpbx`_
-_`INSERT INTO v_users (user_uuid, username, password, salt, add_date, add_user) VALUES (gen_random_uuid(), 'admin', md5('SALT1234admin'), 'SALT1234', NOW(), 'install');`_
+_`nano /opt/homebrew/var/www/fusionpbx/resources/populate.php`_
+<BR>
+Paste the following code into the file
+<BR>
+<BR>
+```ini
+<?php
+// Variables
+$domain_name = 'localhost';
+$system_username = 'admin';
+$system_password = 'admin';
+$user_password = $system_password;
+$database_host = '127.0.0.1';
+$database_port = '5432';
+$database_username = 'fusionpbx';
+$database_name = 'fusionpbx';
+$database_password = 'fusionpbx';
+
+// DB-connection
+$dsn = "pgsql:host=$database_host;port=$database_port;dbname=$database_name;";
+$db = new PDO($dsn, $database_username, $database_password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// Generate Domain-UUID
+$domain_uuid = trim(shell_exec('php /opt/homebrew/var/www/fusionpbx/resources/uuid.php'));
+
+// Insert domain
+$sql = "INSERT INTO v_domains (domain_uuid, domain_name, domain_enabled)
+        VALUES (:uuid, :name, 'true')";
+$stmt = $db->prepare($sql);
+$stmt->execute([
+  ':uuid' => $domain_uuid,
+  ':name' => $domain_name
+]);
+
+// App-Defaults
+shell_exec('php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_domains.php');
+
+// Benutzer anlegen
+$user_uuid = trim(shell_exec('php /opt/homebrew/var/www/fusionpbx/resources/uuid.php'));
+$user_salt = trim(shell_exec('php /opt/homebrew/var/www/fusionpbx/resources/uuid.php'));
+$password_hash = md5($user_salt . $user_password);
+
+// Insert user into DB
+$sql = "INSERT INTO v_users (user_uuid, domain_uuid, username, password, salt, user_enabled)
+        VALUES (:user_uuid, :domain_uuid, :username, :password, :salt, 'true')";
+$stmt = $db->prepare($sql);
+$stmt->execute([
+  ':user_uuid' => $user_uuid,
+  ':domain_uuid' => $domain_uuid,
+  ':username' => $system_username,
+  ':password' => $password_hash,
+  ':salt' => $user_salt
+]);
+
+// Get superadmin-group
+$sql = "SELECT group_uuid FROM v_groups WHERE group_name = 'superadmin'";
+$group_uuid = $db->query($sql)->fetchColumn();
+
+// Add user to group
+$user_group_uuid = trim(shell_exec('php /opt/homebrew/var/www/fusionpbx/resources/uuid.php'));
+$sql = "INSERT INTO v_user_groups (user_group_uuid, domain_uuid, group_name, group_uuid, user_uuid)
+        VALUES (:uuid, :domain_uuid, 'superadmin', :group_uuid, :user_uuid)";
+$stmt = $db->prepare($sql);
+$stmt->execute([
+  ':uuid' => $user_group_uuid,
+  ':domain_uuid' => $domain_uuid,
+  ':group_uuid' => $group_uuid,
+  ':user_uuid' => $user_uuid
+]);
+
+// Generate XML-CDR user and password
+function generateToken($length = 20) {
+  return preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes($length)));
+}
+$xml_cdr_username = generateToken();
+$xml_cdr_password = generateToken();
+
+// xml_cdr.conf.xml aktualisieren
+$xml_file = '/opt/homebrew/etc/freeswitch/autoload_configs/xml_cdr.conf.xml';
+$xml_content = file_get_contents($xml_file);
+$xml_content = str_replace('{v_http_protocol}', 'http', $xml_content);
+$xml_content = str_replace('{domain_name}', $database_host, $xml_content);
+$xml_content = str_replace('{v_project_path}', '', $xml_content);
+$xml_content = str_replace('{v_user}', $xml_cdr_username, $xml_content);
+$xml_content = str_replace('{v_pass}', $xml_cdr_password, $xml_content);
+file_put_contents($xml_file, $xml_content);
+
+// Showoff
+echo "Domain added: $domain_name ($domain_uuid)\n";
+echo "User: $system_username ($user_uuid), Password: $user_password\n";
+echo "xml_cdr User: $xml_cdr_username, Password: $xml_cdr_password\n";
+?>
+```
+Create language folder
+<BR>
+_`mkdir /opt/homebrew/etc/freeswitch/languages`_
+<BR>
+And populate the database
+<BR>
+_`php /opt/homebrew/var/www/fusionpbx/resources/populate.php`_
 <BR>
 <BR>
 <BR>
