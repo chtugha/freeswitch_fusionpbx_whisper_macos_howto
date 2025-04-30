@@ -42,7 +42,7 @@ _`psql`_
 <BR>
 Create a Database:
 <BR>
-_`create role freeswitch with password 'freeswitch!' login;`_
+_`create role freeswitch with password 'fusionpbx' login;`_
 <BR>
 _`create role fsadmin with password 'fsadmin' login superuser createdb;`_
 <BR>
@@ -84,7 +84,7 @@ TraceFile           = /tmp/psqlodbc.log
 Database            = freeswitch
 Servername          = 127.0.0.1
 UserName            = freeswitch
-Password            = freeswitch!
+Password            = fusionpbx
 Port                = 5432
 ReadOnly            = No
 RowVersioning       = No
