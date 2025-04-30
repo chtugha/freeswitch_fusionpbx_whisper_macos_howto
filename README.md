@@ -295,6 +295,27 @@ elseif (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.conf")) {
 			$file = "/opt/homebrew/var/www/fusionpbx/resources/config.conf";
 		}
 ```
+Edit switch
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/switch.php`_
+<BR>
+<BR>
+Go to line 855 and change the code from:
+```ini
+					//write the XML config file
+			$switch_configuration_dir = !empty($_SESSION['switch']['conf']['dir']) ? $_SESSION['switch']['conf']['dir'] : '/etc/freeswitch';
+			$fout = fopen($switch_configuration_dir . "/autoload_configs/xml_cdr.conf.xml","w");
+			fwrite($fout, $file_contents);
+			fclose($fout);
+```
+To the following:
+```ini
+					//write the XML config file
+			$switch_configuration_dir = !empty($_SESSION['switch']['conf']['dir']) ? $_SESSION['switch']['conf']['dir'] : '/opt/homebrew/etc/freeswitch';
+			$fout = fopen($switch_configuration_dir . "/autoload_configs/xml_cdr.conf.xml","w");
+			fwrite($fout, $file_contents);
+			fclose($fout);
+```
 7.) get nginx going
 <BR>
 <BR>
