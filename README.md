@@ -316,6 +316,17 @@ To the following:
 			fwrite($fout, $file_contents);
 			fclose($fout);
 ```
+Edit dashboard
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/core/dashboard/index.php`_
+<BR>
+<BR>
+Go to line 34 and add the following:
+```ini
+	elseif (file_exists("/opt/homebrew/var/www/fusionpbx/resources/config.conf")){
+		//Apple Silicon
+	}
+```
 7.) get nginx going
 <BR>
 <BR>
