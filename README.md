@@ -52,6 +52,9 @@ _`create database freeswitch owner freeswitch;`_
 <BR>
 _`create database fusionpbx owner fusionpbx;`_
 <BR>
+_`grant all privileges on database fusionpbx to fusionpbx;`_
+<BR>
+<BR>
 <BR>
 Check if the database was created:
 <BR>
