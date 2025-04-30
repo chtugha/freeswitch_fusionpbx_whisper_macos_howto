@@ -137,10 +137,11 @@ _`sudo chmod -R 755 /opt/homebrew/var/www/fusionpbx`_
 <BR>
 _`sudo chmod -R 755 /opt/homebrew/var/cache/fusionpbx`_
 <BR>
+<BR>
+4.) Adjust the installation files:
+<BR>
+<BR>
 _`sudo sed -i '' "85s/.*/\$language_code = \$_SESSION['domain']['language']['code'] ?? 'en-us';/" /opt/homebrew/var/www/fusionpbx/resources/classes/text.php`_
-<BR>
-<BR>
-4.) Adjust the installation file:
 <BR>
 <BR>
 _`nano /opt/homebrew/var/www/fusionpbx/core/install/install.php`_
