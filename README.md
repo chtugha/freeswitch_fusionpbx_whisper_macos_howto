@@ -390,13 +390,6 @@ http {
 Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
 <BR>
 <BR>
-Start nginx:
-<BR>
-<BR>
-_`brew services start nginx`_
-<BR>
-<BR>
-<BR>
 8.) Prepare fusionpbx
 <BR>
 <BR>
@@ -421,7 +414,85 @@ $db_password = 'fusionpbx';
 ```
 Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
 <BR>
+<BR>
+create config.conf
+<BR>
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/resources/config.conf`_
+<BR>
+<BR>
+And paste following lines into it. Check if the freeswitch version (here 1.10.12) is right. Adjust if needed.
+<BR>
+<BR>
+```ini
+
+#database system settings
+database.0.type = pgsql
+database.0.host = localhost
+database.0.port = 5432
+database.0.sslmode = prefer
+database.0.name = fusionpbx
+database.0.username = fusionpbx
+database.0.password = fusionpbx
+
+#database switch settings
+database.1.type = sqlite
+database.1.path = /opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/db
+database.1.name = core.db
+
+#general settings
+document.root = /opt/homebrew/var/www/fusionpbx
+project.path =
+temp.dir = /tmp
+php.dir = /opt/homebrew/Cellar/php@8.0/8.0.30_6/bin
+php.bin = php
+
+#cache settings
+cache.method = file
+cache.location = /opt/homebrew/var/cache/fusionpbx
+cache.settings = true
+
+#switch settings
+switch.conf.dir = /opt/homebrew/etc/freeswitch
+switch.sounds.dir = /opt/homebrew/share/freeswitch/sounds
+switch.database.dir = /opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/db
+switch.recordings.dir = /opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/recordings
+switch.storage.dir = /opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/storage
+switch.voicemail.dir = /opt/homebrew/Cellar/freeswitch/1.10.12/var/lib/freeswitch/storage/voicemail
+switch.scripts.dir = /opt/homebrew/share/freeswitch/scripts
+
+#switch xml handler
+xml_handler.fs_path = false
+xml_handler.reg_as_number_alias = false
+xml_handler.number_as_presence_id = true
+
+#error reporting options: user,dev,all
+error.reporting = user
+
+```
+Save changes and quit nano by pressing: `CTRL+O` (confirm with `y`) and `CTRL+X`.
+<BR>
+<BR>
+Now populate the database
+<BR>
+<BR>
 _`php /opt/homebrew/var/www/fusionpbx/core/upgrade/upgrade_schema.php`_
 <BR>
 <BR>
-9.) Start freeswitch:
+And add the admin user (password admin) into the database
+<BR>
+<BR>
+_`psql`_
+_`\c fusionpbx`_
+_`INSERT INTO v_users (user_uuid, username, password, salt, add_date, add_user) VALUES (gen_random_uuid(), 'admin', md5('SALT1234admin'), 'SALT1234', NOW(), 'install');`_
+<BR>
+<BR>
+<BR>
+9.) Start nginx and freeswitch:
+<BR>
+<BR>
+_`brew services start nginx freeswitch`_
+<BR>
+<BR>
+<BR>
+10.) Log into your PBX via http://127.0.0.1:8080
