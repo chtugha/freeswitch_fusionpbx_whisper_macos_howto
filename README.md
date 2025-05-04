@@ -1,6 +1,7 @@
 # freeswitch_fusionpbx_whisper_macos_howto
 **How to install a local voip phonebox on macos whith realtime voice processing**
 <BR>
+UNFINISHED VERSION!!!! NOT YET WORKING !!!
 <BR>
 <BR>
 As prerequisite follow this tutorial: https://github.com/chtugha/whisper.cpp_macos_howto
@@ -583,6 +584,19 @@ _`mkdir /opt/homebrew/etc/freeswitch/languages`_
 And populate the database
 <BR>
 _`php /opt/homebrew/var/www/fusionpbx/resources/populate.php`_
+<BR>
+<BR>
+change the paths in switch.php on line 119
+<BR>
+<BR>
+_`nano /opt/homebrew/var/www/fusionpbx/app/switch/resources/conf/autoload_configs/switch.php`_
+<BR>
+<BR>
+_`<param name="mailer-app" value="/usr/bin/php /var/www/fusionpbx/secure/v_mailto.php"/>`_
+To the following:
+<BR>
+<BR>
+_`<param name="mailer-app" value="/opt/homebrew/bin/php /opt/homebrew/var/www/fusionpbx/secure/v_mailto.php"/>`_
 <BR>
 <BR>
 <BR>
