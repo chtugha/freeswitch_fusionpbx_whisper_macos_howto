@@ -16,7 +16,9 @@ and install everything exactly as shown there.
 ![Terminal](https://github.com/user-attachments/assets/a5ca18ff-867f-46ef-b008-f584b6303f77)
 <BR>
 <BR>
-_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio blackhole-2ch`_
+if more channels are needed exchange blackhole-16ch for blackhole-64ch 
+<BR>
+_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio blackhole-16ch`_ 
 <BR>
 _`brew tap shivammathur/php`_
 <BR>
