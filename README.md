@@ -18,7 +18,7 @@ and install everything exactly as shown there.
 <BR>
 if more channels are needed exchange blackhole-16ch for blackhole-64ch 
 <BR>
-_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio pkg-config blackhole-16ch`_ 
+_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio pkg-config asio blackhole-16ch`_ 
 <BR>
 _`brew tap shivammathur/php`_
 <BR>
@@ -30,7 +30,17 @@ _`brew services start php@8.0`_
 <BR>
 <BR>
 <BR>
-2.) Prepare a database for FusionPBX:
+2.) Install Macports:
+<BR>
+go to https://www.macports.org/install.php
+<BR>
+Download and install Macports. Enter afterwards into terminal:
+<BR>
+_`sudo port install simple-websocket-server`_
+<BR>
+<BR>
+<BR>
+3.) Prepare a database for FusionPBX:
 <BR>
 <BR>
 _`brew services start postgresql`_
@@ -70,7 +80,7 @@ _`\q`_
 <BR>
 <BR>
 <BR>
-3.)Configure ODBC
+4.)Configure ODBC
 <BR>
 <BR>
 _`nano /opt/homebrew/etc/odbc.ini`_
@@ -125,7 +135,7 @@ _`quit`_
 <BR>
 <BR>
 <BR>
-3.) Get FusionPBX and prepare it:
+5.) Get FusionPBX and prepare it:
 <BR>
 <BR>
 _`git clone https://github.com/fusionpbx/fusionpbx.git /opt/homebrew/var/www/fusionpbx`_
@@ -215,7 +225,7 @@ To the following:
 			#app defaults
 			$output = shell_exec('cd '.$_SERVER["DOCUMENT_ROOT"].' && php core/upgrade/upgrade_domains.php');
 ```
-5.) Adjust the installation class:
+6.) Adjust the installation class:
 <BR>
 <BR>
 _`nano /opt/homebrew/var/www/fusionpbx/core/install/resources/classes/install.php`_
