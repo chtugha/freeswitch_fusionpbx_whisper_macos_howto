@@ -18,7 +18,7 @@ and install everything exactly as shown there.
 <BR>
 if more channels are needed exchange blackhole-16ch for blackhole-64ch 
 <BR>
-_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio blackhole-16ch`_ 
+_`brew install git-lfs nginx sqlite freeswitch postgresql psqlodbc unixodbc portaudio pkg-config blackhole-16ch`_ 
 <BR>
 _`brew tap shivammathur/php`_
 <BR>
